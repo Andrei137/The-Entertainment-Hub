@@ -559,19 +559,16 @@
     background-color: #f6eb4e;
 }
 
-#eg-main
-{
+#eg-main {
     background-color: #a8a9ae;
     color: #2c3037;
 }
 
-#eg-body
-{
+#eg-body {
     background-color: #aa8611;
 }
 
-#eg-footer
-{
+#eg-footer {
     background-color: #f2ce08;
 }
 
@@ -585,48 +582,41 @@
     background-color: #9ed5bc;
 }
 
-#tn-main
-{
+#tn-main {
     background-color: #24a9c3;
     color: #04040d
 }
 
-#tn-body
-{
+#tn-body {
     background-color: #131d36;
 }
 
-#tn-footer
-{
+#tn-footer {
     background-color: #1d6083;
 }
 
 /* Erebos */
-#eb-info tr:nth-child(even){
-    background-color:  #98090c;
+#eb-info tr:nth-child(even) {
+    background-color: #98090c;
 }
 
 #eb-info,
-#eb-info .series  {
+#eb-info .series {
     background-color: #ef9b8b;
 }
 
-#eb-main
-{
+#eb-main {
     background-color: #eb5c51;
     color: #160b0a;
 }
 
-#eb-body
-{
+#eb-body {
     background-color: #fb0000;
 }
 
-#eb-footer
-{
+#eb-footer {
     background-color: #786461;
 }
-
 
 /* Responsive Design */
 @media screen and (max-width: 960px) {
@@ -738,6 +728,9 @@
 @media screen and (min-width: 961px) and (max-width: 1280px) {
     #index-header {
         display: grid;
+        margin: 0;
+        padding: 1em;
+        word-spacing: 0;
     }
 
     #index-main figcaption {
@@ -770,6 +763,14 @@
         line-height: 2em;
         text-indent: 3em;
         margin: 0 2em;
+    }
+
+    #index-main,
+    #index-footer,
+    .media-header,
+    .media-main,
+    .media-footer {
+        margin: 0;
     }
 
     .media-poster h1 {
