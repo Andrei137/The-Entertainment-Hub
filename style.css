@@ -327,7 +327,7 @@
     padding: 12px;
     text-align: left;
     vertical-align: middle;
-    border: 1px solid #ddd;
+    border: 0.1em solid;
     text-align: center;
 }
 
@@ -343,6 +343,7 @@
     width: 100%;
     max-width: 800px;
     margin: 2em auto;
+    border: 0.5em solid;
     border-collapse: collapse;
     border-spacing: 0;
     font-size: 16px;
