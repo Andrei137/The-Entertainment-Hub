@@ -17,6 +17,6 @@ CSS:
 - [x] specificarea proprietăților: width, height, color, background, font-size, border, padding, margin, display etc.
 - [x] folosirea coloanelor pentru layoutul a cel puțin unei pagini; realizarea layoutului fără tabele (folosind flex și grid)
 - [x] site-ul trebuie să conțină un menu drop-down realizat cu CSS
-- [ ] site-ul trebuie să aibă și conținut generat (folosind :after, :before)
-- [ ] site-ul trebuie să conțină o tranziție care implică schimbarea mai multor proprietăți la intervale diferite de timp
-- [ ] site-ul trebuie să conțină o animație care să modifice mai multe proprietăți ale aceluiași element  
+- [x] site-ul trebuie să aibă și conținut generat (folosind :after, :before)
+- [x] site-ul trebuie să conțină o tranziție care implică schimbarea mai multor proprietăți la intervale diferite de timp
+- [x] site-ul trebuie să conțină o animație care să modifice mai multe proprietăți ale aceluiași element  
