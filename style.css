@@ -173,6 +173,14 @@
     padding: 1em;
 }
 
+#index-main nav
+{
+    align-items: center;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
 #index-main div {
     display: inline-block;
     margin: 0;
@@ -843,10 +851,6 @@
         margin: 0;
         padding: 1em;
         word-spacing: 0;
-    }
-
-    #index-main figcaption {
-        font-size: 80%;
     }
 
     #introduction {
