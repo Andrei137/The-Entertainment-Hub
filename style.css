@@ -1,7 +1,7 @@
 /* Header index.html */
 .button {
     align-items: center;
-    background-color: #0e131b;
+    background: #0e131b;
     border-radius: 12px;
     display: inline-flex;
     justify-content: center;
@@ -23,7 +23,7 @@
 
 #index-header {
     align-items: center;
-    background-color: #280033;
+    background: #280033;
     border-left: 5px solid black;
     border-radius: 12px 12px 0 0;
     border-right: 5px solid black;
@@ -49,17 +49,17 @@
 }
 
 .dropdown:hover span {
-    background-color: black;
+    background: black;
     color: #e5ad06;
 }
 
 .dropdown-content {
+    background: black;
+    border-radius: 12%;
     display: none;
-    position: absolute;
-    background-color: black;
     min-width: 15%;
     padding: 15% 10% 0;
-    border-radius: 12%;
+    position: absolute;
 }
 
 .dropdown:hover .dropdown-content {
@@ -67,10 +67,10 @@
 }
 
 .dropdown-content a {
-    display: block;
     color: #e0c7af;
-    text-decoration: none;
+    display: block;
     padding: 8px 0;
+    text-decoration: none;
 }
 
 .dropdown-content a:hover {
@@ -80,11 +80,11 @@
 /* Main index.html */
 #introduction h2 {
     align-self: center;
-    font-size: 250%;
     color: #e5ad06;
-    text-align: center;
+    font-size: 250%;
     line-height: 1.25em;
     margin: 0 0 2em;
+    text-align: center;
 }
 
 #introduction {
@@ -92,10 +92,10 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    line-height: 2em;
     margin: 0 6em;
     padding: 2em;
     text-align: justify;
-    line-height: 2em;
     text-indent: 3em;
 }
 
@@ -107,10 +107,10 @@
 }
 
 #index-main section:not(#introduction)>p {
-    text-align: justify;
     line-height: 2em;
-    text-indent: 3em;
     margin: 0 5em;
+    text-align: justify;
+    text-indent: 3em;
 }
 
 #index-main section:not(#introduction) {
@@ -118,9 +118,9 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 2em;
-    margin: 0;
     line-height: 2em;
+    margin: 0;
+    padding: 2em;
     text-indent: 3em;
 }
 
@@ -130,17 +130,47 @@
     text-align: justify;
 }
 
-#index-main img {
+.image-wrapper figure {
+    margin: 0 5em;
+    position: relative;
     border-radius: 12px;
-    height: 17.5em;
-    width: 12.5em;
+    overflow: hidden;
 }
 
-#index-main figcaption {
+.image-wrapper img {
+    height: 17.5em;
+    width: 12.5em;
+    display: block;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+.image-wrapper figcaption {
+    position: absolute;
+    font-size: 90%;
+    left: auto;
+    bottom: 0;
+    right: auto;
+    width: 14em;
+    background-color: black;
     color: #e5ad06;
     text-align: center;
-    text-decoration: none;
-    margin: 1em 0 0;
+    transform: translateY(100%);
+    transition: transform 0.3s ease-out;
+}
+
+.image-wrapper:hover img {
+    transform: scale(1.1);
+    opacity: 0.8;
+}
+
+.image-wrapper:hover figcaption {
+    transform: translateY(0);
+}
+
+.image-wrapper {
+    overflow: hidden;
+    display: inline-block;
+    padding: 1em;
 }
 
 #index-main div {
@@ -148,17 +178,8 @@
     margin: 0;
 }
 
-#index-main div nav {
-    align-items: center;
-    align-self: center;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-    margin: 0;
-    padding: 0;
-}
-
 #index-main h2 {
+    color: #e5ad06;
     font-size: 250%;
     margin: 0;
     padding: 0.25em;
@@ -171,12 +192,8 @@
     text-align: center;
 }
 
-#index-main section>h2:hover {
-    color: #e5ad06;
-}
-
 #index-main {
-    background-color: #3f3f3f;
+    background: #3f3f3f;
     border-left: 5px solid black;
     border-right: 5px solid black;
     color: #e0c7af;
@@ -188,18 +205,18 @@
 }
 
 #index-body {
-    background-color: #002a32;
+    background: #002a32;
 }
 
 /* Footer index.html */
 #index-footer a {
-    color: red;
+    color: lightblue;
     font-size: 100%;
     text-decoration: none;
 }
 
 #index-footer {
-    background-color: #280033;
+    background: #280033;
     border-bottom: 5px solid black;
     border-left: 5px solid black;
     border-radius: 0 0 12px 12px;
@@ -217,10 +234,10 @@
 
 /* Other Pages Header */
 .media-header img {
-    height: 100%;
-    width: 100%;
     border-radius: 6px 6px 0 0;
     display: flex;
+    height: 100%;
+    width: 100%;
 }
 
 .media-header {
@@ -257,8 +274,7 @@
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
-    margin: 0;
-    padding: 0;
+    margin: 4em 6em 0;
 }
 
 .media-intro {
@@ -266,8 +282,7 @@
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-around;
-    margin: 2em 3em;
-    padding: 1em 2em;
+    padding: 2em;
 }
 
 .media-synopsis h2,
@@ -278,8 +293,8 @@
 
 .media-synopsis p,
 .media-review p {
-    margin: 1em;
-    padding: 1em;
+    margin: 0 1em;
+    padding: 0 2em;
 }
 
 .media-synopsis,
@@ -290,13 +305,16 @@
     font-size: 110%;
     font-weight: 550;
     justify-content: center;
-    margin: 1em 0;
-    padding: 1em 2em;
+    margin: 0.5em 2em;
+    padding: 0.5em 1em;
     text-indent: 5%;
 }
 
 .media-info th,
 .media-info td {
+    border: 0.3em solid black;
+    border-collapse: collapse;
+    overflow: hidden;
     padding: 10px;
     text-align: center;
 }
@@ -313,22 +331,20 @@
 .media-info {
     border-collapse: collapse;
     border-radius: 12px;
-    color: #2e384a;
+    color: black;
     overflow: hidden;
     max-width: 800px;
     margin: 2em 6em;
     font-family: Arial, sans-serif;
     width: 100%;
-    margin-bottom: 20px;
 }
 
 .system-req th,
 .system-req td {
+    border: 0.2em solid;
     padding: 12px;
-    text-align: left;
-    vertical-align: middle;
-    border: 0.1em solid;
     text-align: center;
+    vertical-align: middle;
 }
 
 .system-req th {
@@ -343,18 +359,19 @@
     width: 100%;
     max-width: 800px;
     margin: 2em auto;
-    border: 0.5em solid;
     border-collapse: collapse;
     border-spacing: 0;
     font-size: 16px;
 }
 
 .youtube-big {
+    border: 0;
     height: 30em;
     width: 50em;
 }
 
 .youtube-small {
+    border: 0;
     height: 25em;
     width: 40em;
 }
@@ -379,12 +396,15 @@
 }
 
 .media-media audio {
+    height: 5em;
+    padding: 1em 4em;
     width: 30em;
 }
 
 .media-main {
     border-left: 5px solid black;
     border-right: 5px solid black;
+    color: #2e384a;
     font-family: Helvetica, fantasy, serif;
     font-weight: 600;
     margin: 0 3em;
@@ -393,229 +413,321 @@
 
 /* Other Pages Footer */
 .media-footer a {
-    color: red;
+    color: blue;
     font-size: 100%;
     text-decoration: none;
 }
 
 .media-footer {
+    animation: rainbow 5s linear infinite;
     border-bottom: 5px solid black;
     border-left: 5px solid black;
     border-radius: 0 0 12px 12px;
     border-right: 5px solid black;
-    color: white;
-    font-family: Arial, monospace, sans-serif;
+    color: black;
+    font-family: Arial, monospace;
     font-size: 100%;
-    font-weight: 400;
+    font-weight: 200;
     margin: 0 3em 3em;
     padding: 2em 1em 1em 0;
     text-align: right;
-    word-spacing: 2px;
-}
-
-/* Summertime Render */
-#str-info tr:nth-child(even) {
-    background-color: #e0c7af;
-}
-
-#str-info {
-    background-color: #a49b79;
-}
-
-#str-main {
-    background-color: #299ff0;
-    color: #e0c7af;
-}
-
-#str-body {
-    background-color: #717666;
-}
-
-
-#str-footer {
-    background-color: #0978ea;
-}
-
-/* Charlotte */
-#ch-info tr:nth-child(even) {
-    background-color: #c37a80;
-}
-
-#ch-info {
-    background-color: #a6202f;
-}
-
-#ch-main {
-    background-color: #63649e;
-    color: #cf9d95;
-}
-
-#ch-body {
-    background-color: #ec4643;
-}
-
-#ch-footer {
-    background-color: #8485ce;
+    word-spacing: 0.1em;
 }
 
 /* Bocchi The Rock */
 #btr-info tr:nth-child(even) {
-    background-color: #efe3f7;
+    background: #e78234;
 }
 
 #btr-info {
-    background-color: #e78234;
+    background: #f19fbb;
 }
 
 #btr-main {
-    background-color: #f19fbb;
+    background: #efe3f7;
     color: #0f0706;
 }
 
 #btr-body {
-    background-color: #244c97;
+    background: #244c97;
 }
 
-#btr-footer {
-    background-color: #eee035;
+/* Charlotte */
+#ch-info tr:nth-child(even) {
+    background: #9aaad5;
 }
 
-/* Pronty */
-#pfa-info tr:nth-child(even) {
-    background-color: #8d4143;
+#ch-info {
+    background: #9794c3;
 }
 
-#pfa-info,
-#pfa-info .hltb {
-    background-color: #9db086;
+#ch-main {
+    background: #63649e;
+    color: #1f2630;
 }
 
-#pfa-main {
-    background-color: #a45649;
-    color: #e0c7af;
+#ch-body {
+    background: #212357;
 }
 
-#pfa-body {
-    background-color: #23294c;
+/* Summertime Render */
+#str-info tr:nth-child(even) {
+    background: #fce9cc;
 }
 
-#pfa-footer {
-    background-color: #454155;
+#str-info {
+    background: #f9eca9;
 }
 
-/* Jotun Valhalla Edition */
-#jve-info tr:nth-child(even) {
-    background-color: #9f90bb;
+#str-main {
+    background: #3981d6;
+    color: #252626;
 }
 
-#jve-info,
-#jve-info .hltb {
-    background-color: #607ab7;
-}
-
-#jve-main {
-    background-color: #a1a8d7;
-    color: #172166;
-}
-
-#jve-body {
-    background-color: #172166;
-}
-
-#jve-footer {
-    background-color: #515d91;
+#str-body {
+    background: #454c54;
 }
 
 /* Ghost Of Tsushima */
 #got-info tr:nth-child(even) {
-    background-color: #abccdf;
+    background: #abccdf;
 }
 
 #got-info,
 #got-info .hltb {
-    background-color: #3b799d;
+    background: #3b799d;
 }
 
 #got-main {
-    background-color: #6ea4c3;
+    background: #6ea4c3;
     color: #0d233e;
 }
 
 #got-body {
-    background-color: #d50305;
+    background: #95b5cc;
 }
 
-#got-footer {
-    background-color: #abccdf;
+/* Jotun Valhalla Edition */
+#jve-info tr:nth-child(even) {
+    background: #9f90bb;
+}
+
+#jve-info,
+#jve-info .hltb {
+    background: #607ab7;
+}
+
+#jve-main {
+    background: #a1a8d7;
+    color: #172166;
+}
+
+#jve-body {
+    background: #172166;
+}
+
+/* Pronty */
+#pfa-info tr:nth-child(even) {
+    background: #90b1aa;
+}
+
+#pfa-info,
+#pfa-info .hltb {
+    background: #958796;
+}
+
+#pfa-main {
+    background: #65567d;
+    color: #090d19;
+}
+
+#pfa-body {
+    background: #38314c;
 }
 
 /* Endgame */
 #eg-info tr:nth-child(even) {
-    background-color: #c1a62f;
+    background: #fbe870;
 }
 
 #eg-info,
 #eg-info .series {
-    background-color: #f6eb4e;
+    background: #dcd3d7;
 }
 
 #eg-main {
-    background-color: #a8a9ae;
+    background: #a8a9ae;
     color: #2c3037;
 }
 
 #eg-body {
-    background-color: #aa8611;
-}
-
-#eg-footer {
-    background-color: #f2ce08;
-}
-
-/* Tunnels */
-#tn-info tr:nth-child(even) {
-    background-color: #309985;
-}
-
-#tn-info,
-#tn-info .series {
-    background-color: #9ed5bc;
-}
-
-#tn-main {
-    background-color: #24a9c3;
-    color: #04040d
-}
-
-#tn-body {
-    background-color: #131d36;
-}
-
-#tn-footer {
-    background-color: #1d6083;
+    background: #aa8611;
 }
 
 /* Erebos */
 #eb-info tr:nth-child(even) {
-    background-color: #98090c;
+    background: #e3ddd1;
 }
 
 #eb-info,
 #eb-info .series {
-    background-color: #ef9b8b;
+    background: #de1920;
 }
 
 #eb-main {
-    background-color: #eb5c51;
+    background: #b8091a;
     color: #160b0a;
 }
 
 #eb-body {
-    background-color: #fb0000;
+    background: #aa1513;
 }
 
-#eb-footer {
-    background-color: #786461;
+/* Tunnels */
+#tn-info tr:nth-child(even) {
+    background: #00a1b5;
+}
+
+#tn-info,
+#tn-info .series {
+    background: #63b9cf;
+}
+
+#tn-main {
+    background: #53a899;
+    color: #04040d
+}
+
+#tn-body {
+    background: #20323c;
+}
+
+@keyframes rainbow {
+    0% {
+        background-color: red;
+    }
+
+    16.7% {
+        background-color: #ff8000;
+    }
+
+    33.3% {
+        background-color: #ff0;
+    }
+
+    50% {
+        background-color: #0f0;
+    }
+
+    66.7% {
+        background-color: #0080ff;
+    }
+
+    83.3% {
+        background-color: #4b0082;
+    }
+
+    100% {
+        background-color: #ee82ee;
+    }
+}
+
+/* Animation - Ghost Of Tsushima */
+.sword {
+    animation: rotate 3s infinite;
+    height: 27.5em;
+    margin: 0 10em;
+    position: relative;
+    transform: scale(.7);
+    transform-origin: center center;
+    width: 5em;
+}
+
+.blade1 {
+    border-left: 9px solid transparent;
+    border-right: 9px solid transparent;
+    border-top: 192px solid #aab9ae;
+    position: absolute;
+    width: 1.9em;
+}
+
+.blade1::before {
+    border-bottom: 50px solid #aab9ae;
+    border-left: 25px solid transparent;
+    border-right: 25px solid transparent;
+    content: "";
+    margin: -241px -10px;
+    position: absolute;
+}
+
+.blade2 {
+    border-left: 9px solid transparent;
+    border-top: 192px solid #9aa89e;
+    position: absolute;
+    width: 1em;
+}
+
+.blade2::before {
+    border-bottom: 50px solid #9aa89e;
+    border-left: 25px solid transparent;
+    content: "";
+    margin: -241px -10px;
+    position: absolute;
+}
+
+.handgrip1 {
+    background: #63666b;
+    border-radius: 12px;
+    height: 30px;
+    margin: 192px -9px;
+    position: absolute;
+    width: 65px;
+}
+
+.handgrip2 {
+    background: #63666b;
+    height: 50px;
+    margin: 221px 12px;
+    position: absolute;
+    width: 25px;
+}
+
+.handgrip2::before {
+    background: #63666b;
+    border-radius: 50px;
+    content: "";
+    height: 20px;
+    margin: 33px -15px;
+    position: absolute;
+    width: 53px;
+}
+
+.handgrip2::after {
+    background: #aab9ae;
+    border-radius: 100%;
+    content: "";
+    height: 14px;
+    margin: 35px 4px;
+    position: absolute;
+    width: 17px;
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg) scale(.7);
+    }
+
+    25% {
+        transform: rotate(360deg) scale(.7);
+    }
+
+    50% {
+        transform: rotate(1800deg) scale(.7);
+    }
+
+    75% {
+        transform: scale(.7) translateY(-7rem);
+    }
 }
 
 /* Responsive Design */
@@ -651,9 +763,9 @@
         align-items: center;
         display: grid;
         justify-content: space-around;
-        padding: 2em;
-        margin: 0;
         line-height: 2em;
+        margin: 0;
+        padding: 2em;
         text-indent: 3em;
     }
 
@@ -742,9 +854,9 @@
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+        line-height: 2em;
         margin: 0 3em;
         text-align: justify;
-        line-height: 2em;
         text-indent: 3em;
     }
 
@@ -759,10 +871,10 @@
     }
 
     #index-main article {
-        text-align: justify;
         line-height: 2em;
-        text-indent: 3em;
         margin: 0 2em;
+        text-align: justify;
+        text-indent: 3em;
     }
 
     #index-main,
