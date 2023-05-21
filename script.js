@@ -494,9 +494,9 @@ function begin()
             let matches = JSON.parse(localStorage.getItem("matches"));
             if (matches == null)
             {
-                let noMatchesElement = document.createElement("p");
-                noMatchesElement.innerHTML = "No matches have been played yet";
-                noMatchesElement.style.margin = "auto";
+                let noMatchesElement = document.createElement("h3");
+                noMatchesElement.innerHTML = "No matches have been played yet!";
+                noMatchesElement.style.margin = "20px auto 0";
                 matchesElement.appendChild(noMatchesElement);
             }
             else
