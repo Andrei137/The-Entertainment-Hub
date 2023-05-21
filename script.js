@@ -503,13 +503,25 @@ function begin()
             {
                 matches.forEach(match =>
                 {
-                    let matchElement = document.createElement("p");
+                    let matchElement = document.createElement("div");
                     matchElement.classList.add("match");
-                    matchElement.innerHTML = match.player1 + " - " +
-                                             match.player2 + " : " +
-                                             match.points1 + " - " +
-                                             match.points2;
-                    matchElement.style.color = match.color;
+                    let idk = document.createElement("p");
+                    idk.innerHTML = "-";
+                    let player1 = document.createElement("p");
+                    player1.innerHTML = match.player1 + " ";
+                    player1.style.color = match.color1;
+                    let player2 = document.createElement("p");
+                    player2.innerHTML = match.player2;
+                    player2.style.color = match.color2;
+                    let points1 = document.createElement("p");
+                    points1.innerHTML = match.points1;
+                    let points2 = document.createElement("p");
+                    points2.innerHTML = match.points2 + " ";
+                    matchElement.appendChild(player1);
+                    matchElement.appendChild(points1);
+                    matchElement.appendChild(idk);
+                    matchElement.appendChild(points2);
+                    matchElement.appendChild(player2);
                     matchesElement.appendChild(matchElement);
                 });
             }
@@ -715,10 +727,17 @@ document.addEventListener("keydown", (event) =>
         if (event.key == "g")
         {
             let matches = JSON.parse(localStorage.getItem("matches")) || [];
-            let winnerElement = document.getElementById("winner");
-            let winnerObject = window.getComputedStyle(winnerElement);
-            let winnerColor = winnerObject.getPropertyValue("color");
-            matches.unshift({player1: playersNames[0], player2: playersNames[1], points1: playersPoints[0], points2: playersPoints[1], color: winnerColor});
+            let player1Element = document.getElementById("player1");
+            let player1Object = window.getComputedStyle(player1Element);
+            let player1Color = player1Object.getPropertyValue("color");
+            let player2Element = document.getElementById("player2");
+            let player2Object = window.getComputedStyle(player2Element);
+            let player2Color = player2Object.getPropertyValue("color");
+            matches.unshift({player1: playersNames[0], player2: playersNames[1], points1: playersPoints[0], points2: playersPoints[1], color1: player1Color, color2: player2Color});
+            if (matches.length > 25)
+            {
+                matches.pop();
+            }
             localStorage.setItem("matches", JSON.stringify(matches));
 
             playersNames = [];
@@ -758,7 +777,7 @@ document.addEventListener("keydown", (event) =>
     }
 });
 
-window.addEventListener("DOMContentLoaded", () => 
+window.onload = () => 
 {
     localStorage.clear();
     begin();
@@ -780,4 +799,4 @@ window.addEventListener("DOMContentLoaded", () =>
             }
         }
     });
-});
+};

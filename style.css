@@ -859,10 +859,41 @@
     margin: -10px 0 30px;
 }
 
-#matches-container>p {
-    color: yellow;
-    font-size: 20px;
-    margin: 0 0 20px;
+.match {
+    align-items: center;
+    color: white;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+}
+
+.match>p {
+    margin: 0 5px;
+    padding: 0 5px;
+}
+
+.match>p:nth-child(2) {
+    position: fixed;
+    margin-right: 100px;
+    margin-left: 2%;
+}
+
+.match>p:nth-child(4) {
+    position: fixed;
+    margin-left: 100px;
+    margin-right: 2%;
+}
+
+.match>p:nth-child(3) {
+    position: fixed;
+}
+
+.match>p:first-child {
+    margin-right: 5%;
+}
+
+.match>p:last-child {
+    margin-left: 5%;
 }
 
 #scoreboard {
