@@ -11,33 +11,39 @@
 
 <body id="connect4-body">
     <section id="logo"></section>
-    <section id="range">
-        <section id="gamemode-container">
-            <h2 class="subtitle">Select Gamemode</h2>
-            <div id="gamemode-buttons">
-                <div id="gamemode-pve">PvE</div>
-                <div id="gamemode-pvp">PvP</div>
-            </div>
-        </section>
-        <section id="name-input">
-            <h2 id="name-subtitle" class="subtitle"></h2>
-            <form id="name-form">
-                <input type="text" id="red-player" class="player-input" placeholder="Red Player">
-                <input type="text" id="yellow-player" class="player-input" placeholder="Yellow Player">
-                <button type="submit" id="start-button">Start</button>
-            </form>
-        </section>
-        <section id="scoreboard">
-            <div class="players">
-                <div id="score-red" class="cell red"></div>
-                <h2 id="player1"></h2>&nbsp;
-            </div>
-            &nbsp;<h2 id="scoreboard-line">-</h2>&nbsp;
-            <div class="players">
-                <h2 id="player2"></h2>&nbsp;
-                <div id="score-yellow" class="cell yellow"></div>
-            </div>
-        </section>
+    <section id="gamemode-container">
+        <h2 class="subtitle">Select Gamemode</h2>
+        <div id="gamemode-buttons">
+            <div id="gamemode-pve">PvE</div>
+            <div id="match-history">Match History</div>
+            <div id="gamemode-pvp">PvP</div>
+        </div>
+    </section>
+    <section id="name-input">
+        <h2 id="name-subtitle" class="subtitle"></h2>
+        <form id="name-form">
+            <input type="text" id="red-player" class="player-input" placeholder="Red Player">
+            <input type="text" id="yellow-player" class="player-input" placeholder="Yellow Player">
+            <button type="submit" id="start-button">Start</button>
+        </form>
+    </section>
+    <section id="scoreboard">
+        <div class="players">
+            <div id="score-red" class="cell red"></div>
+            <h2 id="player1"></h2>&nbsp;
+        </div>
+        &nbsp;<h2 id="scoreboard-line">-</h2>&nbsp;
+        <div class="players">
+            <h2 id="player2"></h2>&nbsp;
+            <div id="score-yellow" class="cell yellow"></div>
+        </div>
+    </section>
+    <section id="note">
+        <h2>Author's note</h2>
+        <p>After you finish a game, do one of the following</p>
+        <p>Press g to come back to the starting screen</p>
+        <p>Press r to restart the game, keeping the sides</p>
+        <p>Press s to restart the game, changing the sides</p>
     </section>
     <section id="points">
         <h2 id="points1"></h2>
@@ -45,16 +51,7 @@
         <h2 id="points2"></h2>
     </section>
     <h2 id="winner" class="subtitle"></h2>
-    <section id="tips">
-        <h2>Important note</h2>
-        <p>After you finish a game, do one of the following</p>
-        <p>Press g to come back to the starting screen</p>
-        <p>Press r to restart the game, keeping the sides</p>
-        <p>Press s to restart the game, changing the sides</p>
-    </section>
-    <footer id="connect4-footer">
-        Made with ❤️ by Neculae Andrei-Fabian
-    </footer>
+    <footer id="connect4-footer">Made with ❤️ by Neculae Andrei-Fabian</footer>
 </body>
 
 </html>

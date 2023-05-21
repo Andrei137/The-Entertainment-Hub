@@ -740,7 +740,7 @@
 
 /* Connect4 */
 #connect4-body {
-    background-color: #80502a;
+    background-color: #5e4031;
     display: flex;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
@@ -780,7 +780,8 @@
 }
 
 #gamemode-pvp,
-#gamemode-pve {
+#gamemode-pve,
+#match-history {
     background-color: yellow;
     color: red;
     cursor: pointer;
@@ -792,7 +793,8 @@
 }
 
 #gamemode-pvp:hover,
-#gamemode-pve:hover {
+#gamemode-pve:hover,
+#match-history:hover {
     background-color: red;
     color: yellow;
 }
@@ -843,6 +845,24 @@
 
 #start-button:hover {
     background-color: #0056b3;
+}
+
+#matches-container {
+    display: none;
+    flex-flow: column nowrap;
+    justify-content: center;
+}
+
+#matches-container>h3 {
+    color: red;
+    font-size: 23px;
+    margin: -10px 0 30px;
+}
+
+#matches-container>p {
+    color: yellow;
+    font-size: 20px;
+    margin: 0 0 20px;
 }
 
 #scoreboard {
@@ -961,23 +981,24 @@
     margin-bottom: -30px;
 }
 
-#tips {
+#note {
     color: yellow;
     font-size: 20px;
     margin: 80px 0 0;
 }
 
-#tips>p:nth-child(odd) {
+#note>p:nth-child(odd) {
     color: red;
 }
 
-#tips>p:nth-child(even) {
+#note>p:nth-child(even) {
     color: yellow;
 }
 
-#tips>h2 {
+#note>h2 {
     color: red;
     font-size: 30px;
+    text-transform: uppercase;
 }
 
 #connect4-footer {

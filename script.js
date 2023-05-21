@@ -417,10 +417,10 @@ function getMove()
             else
             {
                 messageElement.innerHTML = message + ".";
-                setTimeout(updateDiv, 500);
+                setTimeout(updateDiv, 200);
             }
         }
-        setTimeout(updateDiv, 500);
+        setTimeout(updateDiv, 200);
     }, 0);
 }
 
@@ -443,33 +443,87 @@ function setPiece()
 
 function begin()
 {
-    document.getElementById("winner").style.display = "none";
-    document.getElementById("scoreboard").style.display = "none";
-    document.getElementById("points").style.display = "none";
-    document.getElementById("logo").style.display = "block";
-    document.getElementById("tips").style.display = "block";
-    document.getElementById("gamemode-container").style.display = "flex";
-
-    let pvpButton = document.getElementById("gamemode-pvp");
-    let pveButton = document.getElementById("gamemode-pve");
-
-    pveButton.addEventListener("click", () =>
-    {
-        gamemode = 1;
-        manipulateElements();
-    });
-
-    pvpButton.addEventListener("click", () =>
-    {
-        gamemode = 2;
-        manipulateElements();
-    });
-
     function manipulateElements() 
     {
         document.getElementById("gamemode-container").style.display = "none";
         getNames();
     } 
+
+    document.getElementById("winner").style.display = "none";
+    document.getElementById("scoreboard").style.display = "none";
+    document.getElementById("points").style.display = "none";
+    document.getElementById("logo").style.display = "block";
+    document.getElementById("note").style.display = "block";
+    document.getElementById("gamemode-container").style.display = "flex";
+
+    document.getElementById("gamemode-pve").addEventListener("click", () =>
+    {
+        gamemode = 1;
+        manipulateElements();
+    });
+
+    document.getElementById("gamemode-pvp").addEventListener("click", () =>
+    {
+        gamemode = 2;
+        manipulateElements();
+    });
+
+    document.getElementById("match-history").addEventListener("click", () =>
+    {
+        document.getElementById("gamemode-container").style.display = "none";
+        document.getElementById("note").style.display = "none";
+
+        if (document.getElementById("matches-container") == null)
+        {
+            let matchesElement = document.createElement("div");
+            matchesElement.id = "matches-container";
+            matchesElement.style.display = "flex";
+            let scoreboardElement = document.getElementById("scoreboard");
+            document.body.insertBefore(matchesElement, scoreboardElement);
+
+            let matchesSubtitle = document.createElement("h2");
+            matchesSubtitle.innerHTML = "Match history";
+
+            matchesSubtitle.classList.add("subtitle");
+            matchesElement.appendChild(matchesSubtitle);
+
+            let matchesNote = document.createElement("h3");
+            matchesNote.innerHTML = "Press backspace to return to the main menu";
+            matchesElement.appendChild(matchesNote);
+
+            let matches = JSON.parse(localStorage.getItem("matches"));
+            if (matches == null)
+            {
+                let noMatchesElement = document.createElement("p");
+                noMatchesElement.innerHTML = "No matches have been played yet";
+                noMatchesElement.style.margin = "auto";
+                matchesElement.appendChild(noMatchesElement);
+            }
+            else
+            {
+                matches.forEach(match =>
+                {
+                    let matchElement = document.createElement("p");
+                    matchElement.classList.add("match");
+                    matchElement.innerHTML = match.player1 + " - " +
+                                             match.player2 + " : " +
+                                             match.points1 + " - " +
+                                             match.points2;
+                    matchElement.style.color = match.color;
+                    matchesElement.appendChild(matchElement);
+                });
+            }
+        }
+
+        document.addEventListener("keydown", (event) =>
+        {
+            if (event.key === "Backspace")
+            {
+                document.body.removeChild(document.getElementById("matches-container"));
+                begin();
+            }
+        });
+    });
 }
 
 function setBoard() 
@@ -529,21 +583,6 @@ function setBoard()
         }
         board.push(current_row);
     }
-
-    document.addEventListener("keydown", function (event) 
-    {
-        if (event.key >= '1' && event.key <= '7') 
-        {
-            let column = event.key - '0';
-            updateBoard(column - 1);
-            checkWin();
-            changePlayer();
-            if (gamemode == 1)
-            {
-                getMove();
-            }
-        }
-  });
 }
 
 function getNames()
@@ -585,6 +624,7 @@ function getNames()
     {
         nameSubtitle.innerHTML = "Enter your names";
         formInput[1].value = "";
+        formInput[1].disabled = false;
     }
 
     let form = document.getElementById("name-form");
@@ -636,6 +676,11 @@ function getNames()
         {
             return;
         } 
+        else if (playersNames[0] == playersNames[1])
+        {
+            alert("Please enter different names.");
+            return;
+        }
         else 
         {
             nameInput.style.display = "none";
@@ -646,7 +691,7 @@ function getNames()
             document.getElementById("points1").innerHTML = "0 points";
             document.getElementById("points2").innerHTML = "0 points";
             document.getElementById("logo").style.display = "none";
-            document.getElementById("tips").style.display = "none";
+            document.getElementById("note").style.display = "none";
             setBoard();
             document.getElementById("board").style.display = "flex";
         }
@@ -669,6 +714,13 @@ document.addEventListener("keydown", (event) =>
         document.getElementById("points2").innerHTML = playersPoints[1] + " points";
         if (event.key == "g")
         {
+            let matches = JSON.parse(localStorage.getItem("matches")) || [];
+            let winnerElement = document.getElementById("winner");
+            let winnerObject = window.getComputedStyle(winnerElement);
+            let winnerColor = winnerObject.getPropertyValue("color");
+            matches.unshift({player1: playersNames[0], player2: playersNames[1], points1: playersPoints[0], points2: playersPoints[1], color: winnerColor});
+            localStorage.setItem("matches", JSON.stringify(matches));
+
             playersNames = [];
             playersPoints = [0, 0];
             gamemode = null;
@@ -708,5 +760,24 @@ document.addEventListener("keydown", (event) =>
 
 window.addEventListener("DOMContentLoaded", () => 
 {
+    localStorage.clear();
     begin();
+    document.addEventListener("keydown", function (event) 
+    {
+        if (event.key >= '1' && event.key <= '7') 
+        {
+            if (gameOver)
+            {
+                return;
+            }
+            let column = event.key - '0';
+            updateBoard(column - 1);
+            checkWin();
+            changePlayer();
+            if (gamemode == 1)
+            {
+                getMove();
+            }
+        }
+    });
 });
