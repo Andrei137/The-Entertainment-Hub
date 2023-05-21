@@ -130,8 +130,6 @@ function evaluateLine(a_line, a_piece)
 function evaluatePosition(a_board, a_piece)
 {
     let score = 0;
-    const center_count = a_board.map((row) => row[COLUMNS / 2]).filter((cell) => cell == a_piece).length;
-    score += center_count * 3;
 
     for (let row = 0; row < ROWS; ++row)
     {
@@ -387,8 +385,9 @@ function getMove()
     let messageElement = document.createElement("h2");
     messageElement.id = "message";
     messageElement.style.fontSize = "25px";
-    messageElement.style.margin = "10px auto -2px";
-    messageElement.innerHTML = "Computer is thinking";
+    messageElement.style.margin = "20px 0 0";
+    messageElement.style.padding = "10px 0 0";
+    messageElement.innerHTML = "AI is thinking";
     if (currentPlayer == RED)
     {
         messageElement.style.color = "red";
@@ -397,8 +396,10 @@ function getMove()
     {
         messageElement.style.color = "yellow";
     }
+
     let boardElement = document.getElementById("board");
     document.body.insertBefore(messageElement, boardElement);
+    document.getElementById("arrow").style.visibility = "hidden";
 
     setTimeout(() =>
     {
@@ -407,6 +408,7 @@ function getMove()
             let message = messageElement.innerHTML;
             if (message.endsWith("..."))
             {
+                document.getElementById("arrow").style.visibility = "visible";
                 messageElement.style.display = "none";
                 updateBoard(column);
                 checkWin();
@@ -527,6 +529,21 @@ function setBoard()
         }
         board.push(current_row);
     }
+
+    document.addEventListener("keydown", function (event) 
+    {
+        if (event.key >= '1' && event.key <= '7') 
+        {
+            let column = event.key - '0';
+            updateBoard(column - 1);
+            checkWin();
+            changePlayer();
+            if (gamemode == 1)
+            {
+                getMove();
+            }
+        }
+  });
 }
 
 function getNames()
@@ -561,7 +578,7 @@ function getNames()
     if (gamemode == 1)
     {
         nameSubtitle.innerHTML = "Enter your name";
-        formInput[1].value = "Computer";
+        formInput[1].value = "AI";
         formInput[1].disabled = true;
     }
     else
@@ -588,7 +605,7 @@ function getNames()
 
     function submitForm() 
     {
-        let nameRegex = /^[A-Za-z1-9]{3,8}$/;
+        let nameRegex = /^[A-Za-z1-9]{2,8}$/;
         let playerInputs = document.getElementsByClassName("player-input");
         let allFilled = true;
         for (let i = 0; i < playerInputs.length; ++i) 
@@ -602,7 +619,7 @@ function getNames()
             } 
             else if (!nameRegex.test(playerName)) 
             {
-                alert("Please enter a valid name. 3 to 8 characters, letters and numbers only.");
+                alert("Please enter a valid name. 2 to 8 characters, letters and numbers only.");
                 allFilled = false;
                 break;
             }
@@ -613,7 +630,7 @@ function getNames()
         }
         if (gamemode === 1) 
         {
-            playersNames[1] = "Computer";
+            playersNames[1] = "AI";
         }
         if (!allFilled) 
         {
