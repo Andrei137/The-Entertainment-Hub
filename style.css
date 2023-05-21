@@ -738,6 +738,257 @@
     }
 }
 
+/* Connect4 */
+#connect4-body {
+    background-color: #80502a;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+    text-align: center;
+}
+
+#logo {
+    align-self: center;
+    background-image: url('Images/Games/Connect4.png');
+    background-size: cover;
+    height: 300px;
+    margin-top: -125px;
+    width: 500px;
+}
+
+.subtitle {
+    color: yellow;
+    font-size: 35px;
+    margin: 35px 0 30px;
+    text-transform: uppercase;
+}
+
+#gamemode-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    justify-content: center;
+    margin-top: 100px;
+}
+
+#gamemode-buttons {
+    display: flex;
+    margin-top: 10px;
+}
+
+#gamemode-pvp,
+#gamemode-pve {
+    background-color: yellow;
+    color: red;
+    cursor: pointer;
+    font-family: Arial, sans-serif;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0 50px;
+    padding: 10px 20px;
+}
+
+#gamemode-pvp:hover,
+#gamemode-pve:hover {
+    background-color: red;
+    color: yellow;
+}
+
+#name-input {
+    align-items: center;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    margin: 5% 0 0;
+    text-align: center;
+}
+
+#name-form {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.player-input {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+#red-player {
+    background-color: red;
+    border: 1px solid darkred;
+}
+
+#yellow-player {
+    background-color: yellow;
+    border: 1px solid #F6BE00;
+}
+
+#start-button {
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+    padding: 10px 20px;
+}
+
+#start-button:hover {
+    background-color: #0056b3;
+}
+
+#scoreboard {
+    align-items: flex-start;
+    display: none;
+    justify-content: center;
+    margin: 20px 0 0;
+}
+
+#player1,
+#points1 {
+    color: red;
+}
+
+#player2,
+#points2 {
+    color: yellow;
+}
+
+#scoreboard-line {
+    color: white;
+    font-size: 45px;
+    margin: 20px 0 0;
+    position: fixed;
+}
+
+.players {
+    align-content: center;
+    display: flex;
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    justify-content: space-around;
+    margin: 0 25px;
+    padding: 0 50px;
+}
+
+.players>div {
+    margin: auto 20px;
+}
+
+#points {
+    align-items: center;
+    display: none;
+    justify-content: center;
+    margin: -20px 0 0;
+}
+
+#points1,
+#points2 {
+    align-content: center;
+    display: flex;
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    justify-content: space-around;
+    margin: 0 25px;
+    padding: 0 50px;
+}
+
+#points-line {
+    color: white;
+    font-size: 35px;
+    margin: 0 15px;
+    position: fixed;
+}
+
+#board {
+    align-content: center;
+    background-color: blue;
+    border: 10px solid navy;
+    border-radius: 5%;
+    display: none;
+    flex-flow: row wrap;
+    height: 600px;
+    justify-content: center;
+    margin: auto;
+    position: relative;
+    width: 700px;
+}
+
+.cell {
+    background-color: white;
+    border: 5px solid navy;
+    border-radius: 50%;
+    height: 70px;
+    margin: 5px 9px;
+    width: 70px;
+}
+
+.red {
+    background-color: red;
+}
+
+.yellow {
+    background-color: yellow;
+}
+
+#score-red {
+    border: 5px solid darkred;
+
+}
+
+#score-yellow {
+    border: 5px solid #F6BE00;
+}
+
+#arrow {
+    margin: auto;
+    position: absolute;
+    top: -100px;
+    transition: opacity 0.3s;
+}
+
+#winner {
+    margin-top: 20px;
+    margin-bottom: -30px;
+}
+
+#tips {
+    color: yellow;
+    font-size: 20px;
+    margin: 80px 0 0;
+}
+
+#tips>p:nth-child(odd) {
+    color: red;
+}
+
+#tips>p:nth-child(even) {
+    color: yellow;
+}
+
+#tips>h2 {
+    color: red;
+    font-size: 30px;
+}
+
+#connect4-footer {
+    bottom: 0;
+    left: 0;
+    color: yellow;
+    padding: 10px;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 960px) {
     .button {
