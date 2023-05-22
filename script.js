@@ -505,10 +505,10 @@ function begin()
                 {
                     let matchElement = document.createElement("div");
                     matchElement.classList.add("match");
-                    let idk = document.createElement("p");
-                    idk.innerHTML = "-";
+                    let line = document.createElement("p");
+                    line.innerHTML = "-";
                     let player1 = document.createElement("p");
-                    player1.innerHTML = match.player1 + " ";
+                    player1.innerHTML = match.player1;
                     player1.style.color = match.color1;
                     let player2 = document.createElement("p");
                     player2.innerHTML = match.player2;
@@ -519,7 +519,7 @@ function begin()
                     points2.innerHTML = match.points2 + " ";
                     matchElement.appendChild(player1);
                     matchElement.appendChild(points1);
-                    matchElement.appendChild(idk);
+                    matchElement.appendChild(line);
                     matchElement.appendChild(points2);
                     matchElement.appendChild(player2);
                     matchesElement.appendChild(matchElement);

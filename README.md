@@ -35,5 +35,4 @@ Javascript:
 - [x] schimbarea aleatoare a valorilor unor proprietăți (de exemplu: culoare, dimensiuni, poziție)
 - [x] folosirea proprietăților classList, target sau currentTarget
 - [x] folosirea metodelor getComputedStyle și stopPropagation
-    - [ ] TODO: stopPropagation
 - [x] validarea datelor dintr-un formular folosind expresii regulate
