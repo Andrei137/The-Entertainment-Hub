@@ -479,7 +479,7 @@ function begin()
             matchesElement.id = "matches-container";
             matchesElement.style.display = "flex";
             let scoreboardElement = document.getElementById("scoreboard");
-            document.body.insertBefore(matchesElement, scoreboardElement);
+            document.getElementById("range").insertBefore(matchesElement, scoreboardElement);
 
             let matchesSubtitle = document.createElement("h2");
             matchesSubtitle.innerHTML = "Match history";
@@ -531,7 +531,7 @@ function begin()
         {
             if (event.key === "Backspace")
             {
-                document.body.removeChild(document.getElementById("matches-container"));
+                document.getElementById("range").removeChild(document.getElementById("matches-container"));
                 begin();
             }
         });

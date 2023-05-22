@@ -758,6 +758,10 @@
     width: 500px;
 }
 
+ #connect4-responsive {
+     display: none;
+ }
+
 .subtitle {
     color: yellow;
     font-size: 35px;
@@ -771,7 +775,7 @@
     flex-direction: column;
     font-family: Arial, sans-serif;
     justify-content: center;
-    margin-top: 100px;
+    margin: 100px 0;
 }
 
 #gamemode-buttons {
@@ -808,8 +812,9 @@
     text-align: center;
 }
 
-#name-form {
+#name-form-fieldset {
     align-items: center;
+    border: 0;
     display: flex;
     flex-direction: column;
 }
@@ -1146,6 +1151,18 @@
     .system-req th {
         padding: 8px;
     }
+
+    #connect4-responsive {
+        align-items: center;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        margin-top: 200px;
+    }
+
+    #range {
+        display: none;
+    }
 }
 
 @media screen and (min-width: 961px) and (max-width: 1280px) {
@@ -1221,5 +1238,17 @@
     .media-media figure {
         margin: 0;
         padding: 1em;
+    }
+
+    #connect4-responsive {
+        align-items: center;
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        margin-top: 200px;
+    }
+
+    #range {
+        display: none;
     }
 }
