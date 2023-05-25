@@ -435,7 +435,7 @@ function setPiece()
     updateBoard(column);
     checkWin();
     changePlayer();
-    if (gamemode == 1)
+    if (gamemode == 1 && !gameOver)
     {
         getMove();
     }
@@ -478,6 +478,19 @@ function begin()
             let matchesElement = document.createElement("div");
             matchesElement.id = "matches-container";
             matchesElement.style.display = "flex";
+            let matchHistoryElement = document.createElement("div");
+            matchHistoryElement.style.display = "flex";
+            matchHistoryElement.style.flexDirection = "row"
+            matchHistoryElement.style.justifyContent = "center";
+            let matchesLeft = document.createElement("div");
+            matchesLeft.id = "matches-left";
+            let matchesCenter = document.createElement("div");
+            matchesCenter.id = "matches-center";
+            let matchesRight = document.createElement("div");
+            matchesRight.id = "matches-right";
+            matchHistoryElement.appendChild(matchesLeft);
+            matchHistoryElement.appendChild(matchesCenter);
+            matchHistoryElement.appendChild(matchesRight);
             let scoreboardElement = document.getElementById("scoreboard");
             document.getElementById("range").insertBefore(matchesElement, scoreboardElement);
 
@@ -505,26 +518,20 @@ function begin()
                 {
                     let matchElement = document.createElement("div");
                     matchElement.classList.add("match");
-                    let line = document.createElement("p");
-                    line.innerHTML = "-";
-                    let player1 = document.createElement("p");
+                    let player1 = document.createElement("span");
                     player1.innerHTML = match.player1;
                     player1.style.color = match.color1;
-                    let player2 = document.createElement("p");
+                    let player2 = document.createElement("span");
                     player2.innerHTML = match.player2;
                     player2.style.color = match.color2;
-                    let points1 = document.createElement("p");
-                    points1.innerHTML = match.points1;
-                    let points2 = document.createElement("p");
-                    points2.innerHTML = match.points2 + " ";
-                    matchElement.appendChild(player1);
-                    matchElement.appendChild(points1);
-                    matchElement.appendChild(line);
-                    matchElement.appendChild(points2);
-                    matchElement.appendChild(player2);
-                    matchesElement.appendChild(matchElement);
+                    let tempElement = document.createElement("span");
+                    tempElement.innerHTML = match.points1 + "-" + match.points2;
+                    matchesLeft.appendChild(player1);
+                    matchesCenter.appendChild(tempElement);
+                    matchesRight.appendChild(player2);
                 });
             }
+            matchesElement.appendChild(matchHistoryElement);
         }
 
         document.addEventListener("keydown", (event) =>
@@ -779,7 +786,6 @@ document.addEventListener("keydown", (event) =>
 
 window.onload = () => 
 {
-    localStorage.clear();
     begin();
     document.addEventListener("keydown", function (event) 
     {
@@ -793,7 +799,7 @@ window.onload = () =>
             updateBoard(column - 1);
             checkWin();
             changePlayer();
-            if (gamemode == 1)
+            if (gamemode == 1 && !gameOver)
             {
                 getMove();
             }
