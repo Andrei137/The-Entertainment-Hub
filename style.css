@@ -173,8 +173,7 @@
     padding: 1em;
 }
 
-#index-main nav
-{
+#index-main nav {
     align-items: center;
     display: flex;
     flex-flow: row wrap;
@@ -749,6 +748,10 @@
     text-align: center;
 }
 
+#range {
+    display: block;
+}
+
 #logo {
     align-self: center;
     background-image: url('Images/Games/Connect4Logo.png');
@@ -758,9 +761,9 @@
     width: 500px;
 }
 
- #connect4-responsive {
-     display: none;
- }
+#connect4-responsive {
+    display: none;
+}
 
 .subtitle {
     color: yellow;
@@ -915,8 +918,8 @@
 }
 
 .match>span:nth-child(2) {
-    position: fixed
-;}
+    position: fixed;
+}
 
 .match>span:nth-child(4) {
     position: fixed;
@@ -992,13 +995,6 @@
     margin: auto 20px;
 }
 
-#points {
-    align-items: center;
-    display: none;
-    justify-content: center;
-    margin: 40px 0 0;
-}
-
 #points1,
 #points2 {
     align-content: center;
@@ -1007,11 +1003,111 @@
     font-size: 30px;
 }
 
-#points-line {
+#feedback-button,
+#submit-button {
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    display: inline-block;
+    font-size: 16px;
+    justify-content: center;
+    margin-top: 20px;
+    padding: 10px 20px;
+}
+
+#feedback-button {
+    margin-top: 40px;
+}
+
+#feedback-button:hover,
+#submit-button:hover {
+    background-color: #0056b3;
+}
+
+#feedback-form {
     color: white;
-    font-size: 35px;
-    margin-top: 45px;
-/*    padding: 0 50px;*/
+    display: none;
+    margin: 0 auto;
+    width: 50%;
+}
+
+legend {
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+textarea {
+    resize: none;
+}
+
+fieldset {
+    border-color: white;
+}
+
+label {
+    align-items: center;
+    margin-right: 15px;
+}
+
+label:not(.stars)::after {
+    content: ":";
+}
+
+input[type="email"] {
+    width: 25%;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="number"],
+select,
+option,
+textarea {
+    font-size: 16px;
+}
+
+#rating {
+    display: inline-block;
+    font-size: 0;
+    direction: rtl;
+    text-align: center;
+}
+
+#rating input {
+    display: none;
+}
+
+.stars {
+    color: #ddd;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 2rem;
+    padding: 5px;
+}
+
+.stars::before {
+    content: "\2605";
+}
+
+#rating input:checked~label,
+#rating input:checked~label::before,
+.stars:hover,
+.stars:hover~label {
+    color: #ffc107;
+}
+
+.feedback-element {
+    align-items: center;
+    display: flex;
+    margin: 0 20px;
+    padding: 2px 0;
+
+}
+
+#comments {
+    resize: none;
+    margin-left: 10px;
 }
 
 #board {

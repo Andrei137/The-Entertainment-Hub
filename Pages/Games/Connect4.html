@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
 
 <head>
     <title>Connect 4</title>
     <meta charset="utf-8">
     <meta name="author" content="Neculae Andrei-Fabian">
     <link rel="stylesheet" href="../../style.css">
-    <script type="text/javascript" src="../../script.js"></script>
+    <script src="../../script.js"></script>
 </head>
 
 <body id="connect4-body">
-    <section id="logo"></section>
+    <div id="logo"></div>
     <section id="connect4-responsive">
         <h2 class="subtitle">Please use a Laptop or a Desktop to play this game</h2>
     </section>
@@ -45,23 +45,88 @@
             <div id="scoreboard-left">
                 <div class="players">
                     <div id="score-red" class="cell red"></div>
-                    <h2 id="player1"></h2>
+                    <h2 id="player1">.</h2>
                 </div>
             </div>
             <div id="scoreboard-center">
-                <h2 id="points1"></h2>
+                <h2 id="points1">.</h2>
                 <span id="scoreboard-line">-</span>
-                <h2 id="points2"></h2>
+                <h2 id="points2">.</h2>
             </div>
             <div id="scoreboard-right">
                 <div class="players">
-                    <h2 id="player2"></h2>
+                    <h2 id="player2">.</h2>
                     <div id="score-yellow" class="cell yellow"></div>
                 </div>
             </div>
         </div>
+        <div id="feedback-button">Send feedback</div>
+        <div id="feedback">
+            <form id="feedback-form">
+                <fieldset>
+                    <legend>Feedback</legend>
+                    <div class="feedback-element">
+                        <label for="first-name">First Name</label>
+                        <input type="text" id="first-name" name="name" pattern="[a-zA-Z1-9\-]{1,20}" required>
+                    </div>
+                    <br><br>
+                    <div class="feedback-element">
+                        <label for="last-name">Last Name</label>
+                        <input type="text" id="last-name" name="name" pattern="[a-zA-Z1-9\-]{1,20}" required>
+                    </div>
+                    <br><br>
+                    <div class="feedback-element">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <br><br>
+                    <div class="feedback-element">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" name="age" min="1" max="120" required>
+                    </div>
+                    <br><br>
+                    <div class="feedback-element">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="" selected disabled>-- Select --</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <br><br>
+                    <div class="feedback-element">
+                        <label>Rating</label>
+                        <div id="rating">
+                            <input type="radio" id="star1" name="rating" required>
+                            <label for="star1" class="stars"></label>
+                            <input type="radio" id="star2" name="rating" required>
+                            <label for="star2" class="stars"></label>
+                            <input type="radio" id="star3" name="rating" required>
+                            <label for="star3" class="stars"></label>
+                            <input type="radio" id="star4" name="rating" required>
+                            <label for="star4" class="stars"></label>
+                            <input type="radio" id="star5" name="rating" required>
+                            <label for="star5" class="stars"></label>
+                        </div>
+                    </div>
+                    <br><br>
+                    <div class="feedback-element">
+                        <label for="comments">Comments</label>
+                        <textarea id="comments" name="comments" rows="3" cols="30"></textarea>
+                    </div>
+                    <br><br>
+                    <div class="feedback-element">
+                        <label for="subscribe">Subscribe to get the latest updates in your inbox</label>
+                        <input type="checkbox" id="subscribe" name="subscribe">
+                    </div>
+                    <br><br>
+                </fieldset>
+                <button type="submit" id="submit-button">Submit</button>
+            </form>
+        </div>
     </section>
-    <h2 id="winner" class="subtitle"></h2>
+    <h2 id="winner" class="subtitle">.</h2>
     <footer id="connect4-footer">Made with ❤️ by Neculae Andrei-Fabian</footer>
 </body>
 

@@ -456,6 +456,7 @@ function begin()
         });
 
         document.getElementById("gamemode-container").style.display = "none";
+        document.getElementById("feedback-button").style.display = "none";
         document.getElementById("note").style.display = "none";
         let tipElement = document.getElementById("go-back-tip");
         tipElement.style.marginTop = "75px";
@@ -467,7 +468,19 @@ function begin()
     document.getElementById("scoreboard").style.display = "none";
     document.getElementById("logo").style.display = "block";
     document.getElementById("note").style.display = "block";
+    document.getElementById("feedback-button").style.display = "inline-block";
     document.getElementById("gamemode-container").style.display = "flex";
+    document.getElementById("first-name").value = "";
+    document.getElementById("last-name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("age").value = "";
+    document.getElementById("gender").value = "";
+    document.querySelectorAll('#rating input[type="radio"]').forEach((input) => 
+    {
+        input.checked = false;
+    });
+    document.getElementById("comments").value = "";
+    document.getElementById("subscribe").checked = false;
 
     document.getElementById("gamemode-pve").addEventListener("click", () =>
     {
@@ -484,6 +497,7 @@ function begin()
     document.getElementById("match-history").addEventListener("click", () =>
     {
         document.getElementById("gamemode-container").style.display = "none";
+        document.getElementById("feedback-button").style.display = "none";
         document.getElementById("note").style.display = "none";
 
         if (document.getElementById("matches-container") == null)
@@ -559,6 +573,57 @@ function begin()
             {
                 document.getElementById("range").removeChild(document.getElementById("matches-container"));
                 begin();
+            }
+        });
+    });
+
+    document.getElementById("feedback-button").addEventListener("click", () =>
+    {
+        document.getElementById("gamemode-container").style.display = "none";
+        document.getElementById("feedback-button").style.display = "none";
+        document.getElementById("note").style.display = "none";
+        document.getElementById("feedback-form").style.display = "block";
+
+        let fails = 0;
+        document.getElementById("submit-button").addEventListener('click', (event) =>
+        {
+            if (document.getElementById("feedback-form").checkValidity()) {
+
+                let submit = false;
+                let failChance = 2 + fails;
+                let randomChance = Math.floor(Math.random() * failChance);
+                if (randomChance == 0)
+                {
+                    event.preventDefault();
+                    alert("Failed to submit the feedback form! The server was unresponive! Please try again or press g to go back!");
+                    ++fails;
+
+                    document.addEventListener("keydown", (event) =>
+                    {
+                        if (event.key === "g")
+                        {
+                            document.getElementById("feedback-form").style.display = "none";
+                            begin();
+                        }
+                    });
+                }
+                else
+                {
+                    submit = true;
+                }
+                if (submit)
+                {
+                    event.preventDefault();
+                    alert("Successfully submitted the feedback form! Press g to go back");
+                    document.addEventListener("keydown", (event) =>
+                    {
+                        if (event.key === "g")
+                        {
+                            document.getElementById("feedback-form").style.display = "none";
+                            begin();
+                        }
+                    });
+                }
             }
         });
     });
@@ -654,6 +719,8 @@ function getNames()
     let nameSubtitle = document.getElementById("name-subtitle");
     let formInput = document.getElementsByClassName("player-input");
     formInput[0].value = "";
+    formInput[0].disabled = false;
+    formInput[1].disabled = false;
 
     if (gamemode == 1)
     {
@@ -675,7 +742,6 @@ function getNames()
     {
         nameSubtitle.innerHTML = "Enter your names";
         formInput[1].value = "";
-        formInput[1].disabled = false;
     }
 
     let form = document.getElementById("name-form");
