@@ -103,9 +103,12 @@ function winningMove(a_board, a_piece)
     }
 }
 
-function evaluateLine(a_line, a_piece)
+function evaluateLine(a_board, a_line, a_piece)
 {
     let score = 0;
+    const center_count = a_board.map((row) => row[COLUMNS / 2]).filter((cell) => cell == a_piece).length;
+    score += center_count * 3;
+
     if (a_line.filter((cell) => cell === a_piece).length === 4)
     {
         score += 100;
@@ -137,7 +140,7 @@ function evaluatePosition(a_board, a_piece)
         for (let column = 0; column < COLUMNS - 3; ++column)
         {
             const line = row_array.slice(column, column + 4);
-            score += evaluateLine(line, a_piece);
+            score += evaluateLine(a_board, line, a_piece);
         }
     }
 
@@ -147,7 +150,7 @@ function evaluatePosition(a_board, a_piece)
         for (let row = 0; row < ROWS - 3; ++row)
         {
             const line = column_array.slice(row, row + 4);
-            score += evaluateLine(line, a_piece);
+            score += evaluateLine(a_board, line, a_piece);
         }
     }
 
@@ -160,7 +163,7 @@ function evaluatePosition(a_board, a_piece)
             {
                 line.push(a_board[row + i][column + i]);
             }
-            score += evaluateLine(line, a_piece);
+            score += evaluateLine(a_board, line, a_piece);
         }
     }
 
@@ -173,7 +176,7 @@ function evaluatePosition(a_board, a_piece)
             {
                 line.push(a_board[row + 3 - i][column + i]);
             }
-            score += evaluateLine(line, a_piece);
+            score += evaluateLine(a_board, line, a_piece);
         }
     }
     return score;
@@ -338,15 +341,15 @@ function checkWin()
     {
         setWinner(playersNames[currentPlayer - 1] + " wins!");
         ++playersPoints[currentPlayer - 1];
-        document.getElementById("points" + currentPlayer).innerHTML = playersPoints[currentPlayer - 1] + " points";
+        document.getElementById("points" + currentPlayer).innerHTML = playersPoints[currentPlayer - 1];
     }
     else if (getValidLocations(board).length === 0)
     {
         setWinner("It's a draw!");
         playersPoints[0] += 0.5;
         playersPoints[1] += 0.5;
-        document.getElementById("points1").innerHTML = playersPoints[0] + " points";
-        document.getElementById("points2").innerHTML = playersPoints[1] + " points";
+        document.getElementById("points1").innerHTML = playersPoints[0];
+        document.getElementById("points2").innerHTML = playersPoints[1];
     }
 }
 
@@ -387,7 +390,7 @@ function getMove()
     messageElement.style.fontSize = "25px";
     messageElement.style.margin = "20px 0 0";
     messageElement.style.padding = "10px 0 0";
-    messageElement.innerHTML = "AI is thinking";
+    messageElement.innerHTML = "Computer is thinking";
     if (currentPlayer == RED)
     {
         messageElement.style.color = "red";
@@ -445,13 +448,29 @@ function begin()
 {
     function manipulateElements() 
     {
+        document.addEventListener("keydown", (event) =>
+        {
+            if (event.key == "g")
+            {
+                if (document.getElementById("matches-container") != null)
+                {
+                    document.getElementById("range").removeChild(document.getElementById("matches-container"));
+                }
+                document.getElementById("name-input").style.display = "none";
+                begin();
+            }
+        });
+
         document.getElementById("gamemode-container").style.display = "none";
+        document.getElementById("note").style.display = "none";
+        let tipElement = document.getElementById("go-back-tip");
+        tipElement.style.marginTop = "75px";
+
         getNames();
     } 
 
     document.getElementById("winner").style.display = "none";
     document.getElementById("scoreboard").style.display = "none";
-    document.getElementById("points").style.display = "none";
     document.getElementById("logo").style.display = "block";
     document.getElementById("note").style.display = "block";
     document.getElementById("gamemode-container").style.display = "flex";
@@ -488,9 +507,12 @@ function begin()
             matchesCenter.id = "matches-center";
             let matchesRight = document.createElement("div");
             matchesRight.id = "matches-right";
+            let matchesDate = document.createElement("h3");
+            matchesDate.id = "matches-date";
             matchHistoryElement.appendChild(matchesLeft);
             matchHistoryElement.appendChild(matchesCenter);
             matchHistoryElement.appendChild(matchesRight);
+            matchHistoryElement.appendChild(matchesDate);
             let scoreboardElement = document.getElementById("scoreboard");
             document.getElementById("range").insertBefore(matchesElement, scoreboardElement);
 
@@ -518,17 +540,20 @@ function begin()
                 {
                     let matchElement = document.createElement("div");
                     matchElement.classList.add("match");
-                    let player1 = document.createElement("span");
+                    let player1 = document.createElement("div");
                     player1.innerHTML = match.player1;
                     player1.style.color = match.color1;
-                    let player2 = document.createElement("span");
+                    let player2 = document.createElement("div");
                     player2.innerHTML = match.player2;
                     player2.style.color = match.color2;
-                    let tempElement = document.createElement("span");
-                    tempElement.innerHTML = match.points1 + "-" + match.points2;
+                    let tempElement = document.createElement("div");
+                    tempElement.innerHTML = match.points1 + " - " + match.points2;
+                    let dateTime = document.createElement("div");
+                    dateTime.innerHTML = match.dateTime;
                     matchesLeft.appendChild(player1);
                     matchesCenter.appendChild(tempElement);
                     matchesRight.appendChild(player2);
+                    matchesDate.appendChild(dateTime);
                 });
             }
             matchesElement.appendChild(matchHistoryElement);
@@ -608,8 +633,8 @@ function getNames()
 {
     function moveButtonRandomly()
     {
-        let startButton = document.getElementById('start-button');
-        const nameInputElement = document.getElementById('range');
+        let startButton = document.getElementById("start-button");
+        const nameInputElement = document.getElementById("range");
         const coords = nameInputElement.getBoundingClientRect();
         const minX = coords.left;
         const maxX = coords.right - startButton.offsetWidth;
@@ -619,12 +644,15 @@ function getNames()
         const randomX = Math.random() * (maxX - minX) + minX;
         const randomY = Math.random() * (maxY - minY) + minY;
 
-        startButton.style.position = 'absolute';
-        startButton.style.left = randomX + 'px';
-        startButton.style.top = randomY + 'px';
+        startButton.style.position = "absolute";
+        startButton.style.left = randomX + "px";
+        startButton.style.top = randomY + "px";
+
+        let tipElement = document.getElementById("go-back-tip");
+        tipElement.style.marginTop = "135px";
     }
 
-    document.getElementById('start-button').style.position = "static";
+    document.getElementById("start-button").style.position = "static";
 
     let nameInput = document.getElementById("name-input");
     nameInput.style.display = "flex";
@@ -662,23 +690,31 @@ function getNames()
         }
     });
 
-    function submitForm() 
+    document.getElementById("start-button").addEventListener("mouseover", () =>
     {
-        let nameRegex = /^[A-Za-z1-9]{2,8}$/;
         let playerInputs = document.getElementsByClassName("player-input");
-        let allFilled = true;
-        for (let i = 0; i < playerInputs.length; ++i) 
+        for (let i = 0; i < playerInputs.length; ++i)
         {
             let playerName = playerInputs[i].value.trim();
             if (playerName == "")
             {
                 moveButtonRandomly();
-                allFilled = false;
                 break;
-            } 
-            else if (!nameRegex.test(playerName)) 
+            }
+        }
+    });
+
+    function submitForm() 
+    {
+        let nameRegex = /^[A-Za-z1-9 ]{1,12}$/;
+        let playerInputs = document.getElementsByClassName("player-input");
+        let allFilled = true;
+        for (let i = 0; i < playerInputs.length; ++i) 
+        {
+            let playerName = playerInputs[i].value.trim();
+            if (!nameRegex.test(playerName)) 
             {
-                alert("Please enter a valid name. 2 to 8 characters, letters and numbers only.");
+                alert("Please enter a valid name. 1 to 12 characters, letters numbers and spaces only.");
                 allFilled = false;
                 break;
             }
@@ -689,7 +725,7 @@ function getNames()
         }
         if (gamemode === 1) 
         {
-            playersNames[1] = "AI";
+            playersNames[1] = "Computer";
         }
         if (!allFilled) 
         {
@@ -704,11 +740,10 @@ function getNames()
         {
             nameInput.style.display = "none";
             document.getElementById("scoreboard").style.display = "flex";
-            document.getElementById("points").style.display = "flex";
             document.getElementById("player1").innerHTML = playersNames[0];
             document.getElementById("player2").innerHTML = playersNames[1];
-            document.getElementById("points1").innerHTML = "0 points";
-            document.getElementById("points2").innerHTML = "0 points";
+            document.getElementById("points1").innerHTML = "0";
+            document.getElementById("points2").innerHTML = "0";
             document.getElementById("logo").style.display = "none";
             document.getElementById("note").style.display = "none";
             setBoard();
@@ -729,8 +764,8 @@ document.addEventListener("keydown", (event) =>
 {
     if (gameOver)
     {
-        document.getElementById("points1").innerHTML = playersPoints[0] + " points";
-        document.getElementById("points2").innerHTML = playersPoints[1] + " points";
+        document.getElementById("points1").innerHTML = playersPoints[0];
+        document.getElementById("points2").innerHTML = playersPoints[1];
         if (event.key == "g")
         {
             let matches = JSON.parse(localStorage.getItem("matches")) || [];
@@ -740,7 +775,11 @@ document.addEventListener("keydown", (event) =>
             let player2Element = document.getElementById("player2");
             let player2Object = window.getComputedStyle(player2Element);
             let player2Color = player2Object.getPropertyValue("color");
-            matches.unshift({player1: playersNames[0], player2: playersNames[1], points1: playersPoints[0], points2: playersPoints[1], color1: player1Color, color2: player2Color});
+            let today = new Date();
+            let date = today.toLocaleDateString();
+            let time = today.toLocaleTimeString();
+            let dateTime = date + " " + time;
+            matches.unshift({player1: playersNames[0], player2: playersNames[1], points1: playersPoints[0], points2: playersPoints[1], color1: player1Color, color2: player2Color, dateTime: dateTime});
             if (matches.length > 25)
             {
                 matches.pop();
@@ -767,8 +806,8 @@ document.addEventListener("keydown", (event) =>
             [playersPoints[0], playersPoints[1]] = [playersPoints[1], playersPoints[0]];
             document.getElementById("player1").innerHTML = playersNames[0];
             document.getElementById("player2").innerHTML = playersNames[1];
-            document.getElementById("points1").innerHTML = playersPoints[0] + " points";
-            document.getElementById("points2").innerHTML = playersPoints[1] + " points";
+            document.getElementById("points1").innerHTML = playersPoints[0];
+            document.getElementById("points2").innerHTML = playersPoints[1];
             document.getElementById("winner").style.display = "none";
             setBoard();
             document.getElementById("board").style.display = "flex";
@@ -789,13 +828,13 @@ window.onload = () =>
     begin();
     document.addEventListener("keydown", function (event) 
     {
-        if (event.key >= '1' && event.key <= '7') 
+        if (event.key >= "1" && event.key <= "7") 
         {
             if (gameOver)
             {
                 return;
             }
-            let column = event.key - '0';
+            let column = event.key - "0";
             updateBoard(column - 1);
             checkWin();
             changePlayer();

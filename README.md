@@ -38,11 +38,7 @@
 - [x] validarea datelor dintr-un formular folosind expresii regulate
 
 # TODO:
-- [ ] rezolvare formatare scoreboard
-- [ ] backspace la Pv*
 - [ ] adaugare color picker la form
-- [ ] random color picker la PvP
-- [ ] random buton de submit on hover
-- [ ] data la match history
+- [ ] random color picker la PvE
 - [ ] buton de feedback + formular
 - [ ] svg la logo (daca am chef si timp)

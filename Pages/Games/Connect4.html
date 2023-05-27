@@ -32,17 +32,7 @@
                     <button type="submit" id="start-button">Start</button>
                 </fieldset>
             </form>
-        </section>
-        <section id="scoreboard">
-            <div class="players">
-                <div id="score-red" class="cell red"></div>
-                <h2 id="player1"></h2>&nbsp;
-            </div>
-            &nbsp;<h2 id="scoreboard-line">-</h2>&nbsp;
-            <div class="players">
-                <h2 id="player2"></h2>&nbsp;
-                <div id="score-yellow" class="cell yellow"></div>
-            </div>
+            <h2 id="go-back-tip">Press g to go back to the main menu</h2>
         </section>
         <section id="note">
             <h2>Author's note</h2>
@@ -51,11 +41,25 @@
             <p>Press r to restart the game, keeping the sides</p>
             <p>Press s to restart the game, changing the sides</p>
         </section>
-    </section>
-    <section id="points">
-        <h2 id="points1"></h2>
-        &nbsp;<h2 id="points-line">-</h2>&nbsp;
-        <h2 id="points2"></h2>
+        <div id="scoreboard">
+            <div id="scoreboard-left">
+                <div class="players">
+                    <div id="score-red" class="cell red"></div>
+                    <h2 id="player1"></h2>
+                </div>
+            </div>
+            <div id="scoreboard-center">
+                <h2 id="points1"></h2>
+                <span id="scoreboard-line">-</span>
+                <h2 id="points2"></h2>
+            </div>
+            <div id="scoreboard-right">
+                <div class="players">
+                    <h2 id="player2"></h2>
+                    <div id="score-yellow" class="cell yellow"></div>
+                </div>
+            </div>
+        </div>
     </section>
     <h2 id="winner" class="subtitle"></h2>
     <footer id="connect4-footer">Made with ❤️ by Neculae Andrei-Fabian</footer>

@@ -769,6 +769,13 @@
     text-transform: uppercase;
 }
 
+#go-back-tip {
+    color: red;
+    font-size: 25px;
+    margin-top: 75px;
+    text-transform: uppercase;
+}
+
 #gamemode-container {
     align-items: center;
     display: flex;
@@ -860,12 +867,23 @@
 
 #matches-left,
 #matches-center,
-#matches-right {
+#matches-right,
+#matches-date {
     color: white;
     display: flex;
     flex-direction: column;
     font-family: Arial, sans-serif;
     font-size: 18px;
+}
+
+#player1 {
+    margin-right: 10px;
+    text-align: right;
+}
+
+#player2 {
+    margin-left: 10px;
+    text-align: left;
 }
 
 #matches-left {
@@ -876,6 +894,11 @@
 #matches-right {
     margin-left: 10px;
     align-items: flex-start;
+}
+
+#matches-date {
+    margin-left: 100px;
+    margin-top: 0;
 }
 
 #matches-container>h3 {
@@ -911,12 +934,41 @@
     text-align: left;
 }
 
-
 #scoreboard {
     align-items: flex-start;
     display: none;
-    justify-content: center;
-    margin: 20px 0 0;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 25px;
+    padding-top: 50px;
+}
+
+#scoreboard-left,
+#scoreboard-center,
+#scoreboard-right {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-family: Arial, sans-serif;
+}
+
+#scoreboard-left {
+    align-items: flex-end;
+}
+
+#scoreboard-center {
+    margin-top: 10px;
+    position: fixed;
+}
+
+#scoreboard-right {
+    align-items: flex-start;
+}
+
+#scoreboard-line {
+    color: white;
+    font-size: 45px;
+    padding: 0 50px;
 }
 
 #player1,
@@ -929,21 +981,11 @@
     color: yellow;
 }
 
-#scoreboard-line {
-    color: white;
-    font-size: 45px;
-    margin: 20px 0 0;
-    position: fixed;
-}
-
 .players {
     align-content: center;
     display: flex;
     font-family: Arial, sans-serif;
     font-size: 25px;
-    justify-content: space-around;
-    margin: 0 25px;
-    padding: 0 50px;
 }
 
 .players>div {
@@ -954,7 +996,7 @@
     align-items: center;
     display: none;
     justify-content: center;
-    margin: 5px 0 0;
+    margin: 40px 0 0;
 }
 
 #points1,
@@ -962,17 +1004,14 @@
     align-content: center;
     display: flex;
     font-family: Arial, sans-serif;
-    font-size: 25px;
-    justify-content: space-around;
-    margin: 0 25px;
-    padding: 0 50px;
+    font-size: 30px;
 }
 
 #points-line {
     color: white;
     font-size: 35px;
-    margin: 0 15px;
-    position: fixed;
+    margin-top: 45px;
+/*    padding: 0 50px;*/
 }
 
 #board {
@@ -1049,8 +1088,8 @@
 
 #connect4-footer {
     bottom: 0;
-    left: 0;
     color: yellow;
+    left: 0;
     padding: 10px;
     position: fixed;
     text-align: center;
