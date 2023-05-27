@@ -36,6 +36,3 @@
 - [x] folosirea proprietăților classList, target sau currentTarget
 - [x] folosirea metodelor getComputedStyle și stopPropagation
 - [x] validarea datelor dintr-un formular folosind expresii regulate
-
-# TODO:
-- [ ] buton de feedback + formular
