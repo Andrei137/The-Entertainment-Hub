@@ -38,7 +38,4 @@
 - [x] validarea datelor dintr-un formular folosind expresii regulate
 
 # TODO:
-- [ ] adaugare color picker la form
-- [ ] random color picker la PvE
 - [ ] buton de feedback + formular
-- [ ] svg la logo (daca am chef si timp)

@@ -300,22 +300,16 @@ function changePlayer()
     let arrow = document.getElementById("arrow");
     if (currentPlayer == RED)
     {
-        if (gamemode != 1)
-        {
-            arrow.classList.remove("red");
-            arrow.classList.add("yellow");
-            arrow.style.borderColor = "#F6BE00";
-        }
+        arrow.classList.remove("red");
+        arrow.classList.add("yellow");
+        arrow.style.borderColor = "#F6BE00";
         currentPlayer = YELLOW;
     }
     else
     {
-        if (gamemode != 1)
-        {
-            arrow.classList.remove("yellow");
-            arrow.classList.add("red");
-            arrow.style.borderColor = "darkred";
-        }
+        arrow.classList.remove("yellow");
+        arrow.classList.add("red");
+        arrow.style.borderColor = "darkred";
         currentPlayer = RED;
     }
 }
@@ -664,8 +658,18 @@ function getNames()
     if (gamemode == 1)
     {
         nameSubtitle.innerHTML = "Enter your name";
-        formInput[1].value = "AI";
-        formInput[1].disabled = true;
+        let randomNumber = Math.floor(Math.random() * 2);
+        if (randomNumber == 0)
+        {
+            formInput[0].value = "Computer";
+            formInput[0].disabled = true;
+            formInput[1].value = "";
+        }
+        else
+        {
+            formInput[1].value = "Computer";
+            formInput[1].disabled = true;
+        }
     }
     else
     {
@@ -723,10 +727,6 @@ function getNames()
                 playersNames[i] = playerName;
             }
         }
-        if (gamemode === 1) 
-        {
-            playersNames[1] = "Computer";
-        }
         if (!allFilled) 
         {
             return;
@@ -748,6 +748,10 @@ function getNames()
             document.getElementById("note").style.display = "none";
             setBoard();
             document.getElementById("board").style.display = "flex";
+            if (gamemode == 1 && playersNames[0] == "Computer")
+            {
+                getMove();
+            }
         }
     }
 }
