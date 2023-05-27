@@ -1005,10 +1005,10 @@
 
 #feedback-button,
 #submit-button {
-    background-color: #007bff;
+    background-color: red;
     border: none;
     border-radius: 4px;
-    color: #fff;
+    color: yellow;
     display: inline-block;
     font-size: 16px;
     justify-content: center;
@@ -1022,7 +1022,8 @@
 
 #feedback-button:hover,
 #submit-button:hover {
-    background-color: #0056b3;
+    background-color: yellow;
+    color: red;
 }
 
 #feedback-form {
